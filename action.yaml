@@ -1,0 +1,20 @@
+---
+name: 'Run cfn-lint on a CloudFormation template'
+description: |
+  Performs a lint check using [cfn-lint](https://github.com/aws-cloudformation/cfn-lint)
+  against the provided template.
+
+branding:
+  icon: 'zap'
+  color: yellow
+
+inputs:
+  template:
+    description: 'Path to the template'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.template }}
