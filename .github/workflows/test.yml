@@ -7,7 +7,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Hello world action step
+      - name: Lint bucket.yml
         uses: ./
         with:
           template: 'bucket.yml'
+
+      - name: Lint demo.yml
+        uses: ./
+        with:
+          template: 'demo.yml'
