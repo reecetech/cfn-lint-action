@@ -1,0 +1,21 @@
+name: Test usage
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    name: Test the action
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Lint bucket.yml
+        uses: ./
+        with:
+          template: 'bucket.yml'
+
+      - name: Lint demo.yml
+        uses: ./
+        with:
+          template: 'demo.yml'
