@@ -1,3 +1,5 @@
+name: Test usage
+
 on: [push]
 
 jobs:
