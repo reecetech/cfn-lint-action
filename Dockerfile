@@ -1,5 +1,7 @@
 FROM python:3.10-alpine
 
+LABEL org.opencontainers.image.source https://github.com/samjarrett/cfn-lint-action
+
 COPY requirements.txt /deps/
 RUN pip install --requirement /deps/requirements.txt
 
