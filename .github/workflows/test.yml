@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    name: Test the action
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Hello world action step
+        uses: ./
+        with:
+          template: 'bucket.yml'
