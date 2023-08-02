@@ -24,7 +24,7 @@ jobs:
         continue-on-error: ${{ matrix.fail-flag }}
         uses: ./
         with:
-          template: ${{ matrix.template }}
+          template: templates/${{ matrix.template }}
 
       - name: Check fails ↪️
         shell: bash
