@@ -1,8 +1,9 @@
 ---
 name: 'Run cfn-lint on a CloudFormation template'
 description: |
-  Performs a lint check using [cfn-lint](https://github.com/aws-cloudformation/cfn-lint)
-  against the provided template.
+  Performs a lint check using
+  [cfn-lint](https://github.com/aws-cloudformation/cfn-lint) against the
+  provided template.
 
 branding:
   icon: 'zap'

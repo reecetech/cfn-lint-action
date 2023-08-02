@@ -1,6 +1,8 @@
+---
 name: Test usage
 
-on: [push]
+on:  # yamllint disable-line rule:truthy
+  push: ~
 
 jobs:
   run:
@@ -28,4 +30,7 @@ jobs:
 
       - name: Check fails ↪️
         shell: bash
-        run: ./pass-intended-fails.sh ${{ steps.lint.outcome }} ${{ matrix.fail-flag }}
+        run: |
+          ./pass-intended-fails.sh \
+            ${{ steps.lint.outcome }} \
+            ${{ matrix.fail-flag }}
