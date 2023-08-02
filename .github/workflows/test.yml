@@ -7,15 +7,25 @@ jobs:
     runs-on: ubuntu-latest
     name: Test the action
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - template: bucket.yml
+            fail-flag: false
+          - template: demo.yml
+            fail-flag: true
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Lint bucket.yml
+      - id: lint
+        name: Lint ${{ matrix.template }}
+        continue-on-error: ${{ matrix.fail-flag }}
         uses: ./
         with:
-          template: 'bucket.yml'
+          template: templates/${{ matrix.template }}
 
-      - name: Lint demo.yml
-        uses: ./
-        with:
-          template: 'demo.yml'
+      - name: Check fails ↪️
+        shell: bash
+        run: ./pass-intended-fails.sh ${{ steps.lint.outcome }} ${{ matrix.fail-flag }}
