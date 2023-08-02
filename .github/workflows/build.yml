@@ -1,12 +1,62 @@
+---
 name: Docker
 
-on: [push]
+on:  # yamllint disable-line rule:truthy
+  push: ~
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout code 🛒
+        uses: actions/checkout@v3
+
+      - id: yamllint
+        name: Run yamllint 📃
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          strict: true
+
+  update-doc:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - id: checkout
+        name: Checkout code 🛒
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # otherwise, you will fail to push refs to dest repo
+
+      - id: auto-doc
+        name: Run auto-doc 📃
+        uses: tj-actions/auto-doc@v2.8.0
+        with:
+          filename: "action.yaml"
+
+      - id: changes
+        name: Verify changed files 🔎
+        uses: tj-actions/verify-changed-files@v9.1
+        with:
+          files: |
+            README.md
+
+      - id: commit
+        if: steps.changes.outputs.files_changed == 'true'
+        name: Commit README changes 📥
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Update README'
+          committer_name: 'GitHub Actions'
+          committer_email: 'actions@github.com'
+          add: 'README.md'
+
   push:
     runs-on: ubuntu-latest
     name: Build and Push Container Image
@@ -43,3 +93,53 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+
+  release:
+    needs:
+      - yamllint
+      - push
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == github.event.repository.default_branch }}
+    steps:
+      - id: checkout
+        name: Checkout code 🛒
+        uses: actions/checkout@v3
+
+      - name: Get next version
+        uses: reecetech/version-increment@2022.5.1
+        id: version
+        with:
+          scheme: semver
+          increment: minor
+
+      - id: release
+        name: Release version 📦
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          draft: false
+          prerelease: false
+          automatic_release_tag: "${{ steps.version.outputs.version }}"
+
+      - id: push-short-tag
+        name: Create release short tag 🏷
+        uses: richardsimko/update-tag@5bd0e05b035e02d5da3768dbdcfc4e5e0908623e
+        with:
+          tag_name: ${{ steps.version.outputs.major-v-version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: output-version
+        name: Version noted summary page 📝
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo -e "## ✨ Published\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Name: ${{ github.event.repository.name }}\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Version: ${{ steps.version.outputs.v-version }}\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Moved tag: ${{ steps.version.outputs.major-v-version }}\n" \
+            | tee -a "${GITHUB_STEP_SUMMARY}"
