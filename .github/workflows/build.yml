@@ -108,21 +108,21 @@ jobs:
         name: Checkout code 🛒
         uses: actions/checkout@v3
 
-      - name: Get next version
+      - id: version
+        name: Calculate next version 🔢
         uses: reecetech/version-increment@2022.5.1
-        id: version
         with:
           scheme: semver
           increment: minor
 
-      - id: release
-        name: Release version 📦
-        uses: marvinpinto/action-automatic-releases@v1.2.1
+      - id: github-release
+        name: Create Github Release 📦
+        uses: softprops/action-gh-release@v0.1.15
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          draft: false
+          tag_name: ${{ steps.version.outputs.v-version }}
           prerelease: false
-          automatic_release_tag: "${{ steps.version.outputs.version }}"
+          draft: false
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - id: push-short-tag
         name: Create release short tag 🏷
