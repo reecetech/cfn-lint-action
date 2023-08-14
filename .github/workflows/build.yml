@@ -3,6 +3,9 @@ name: Docker
 
 on:  # yamllint disable-line rule:truthy
   push: ~
+  workflow_dispatch: ~
+  schedule:
+    - cron: '0 0 * * SAT'  # Monday-Friday at 6:30 AM (AEST)
 
 env:
   REGISTRY: ghcr.io
@@ -36,7 +39,7 @@ jobs:
 
       - id: auto-doc
         name: Run auto-doc 📃
-        uses: tj-actions/auto-doc@v2.8.0
+        uses: tj-actions/auto-doc@v2.9.0
         with:
           filename: "action.yaml"
 

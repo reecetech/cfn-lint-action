@@ -9,11 +9,11 @@ attrs==23.1.0
     #   jschema-to-python
     #   jsonschema
     #   sarif-om
-aws-sam-translator==1.72.0
+aws-sam-translator==1.73.0
     # via cfn-lint
-boto3==1.28.17
+boto3==1.28.25
     # via aws-sam-translator
-botocore==1.31.17
+botocore==1.31.25
     # via
     #   boto3
     #   s3transfer
@@ -27,7 +27,7 @@ jschema-to-python==1.2.3
     # via cfn-lint
 jsonpatch==1.33
     # via cfn-lint
-jsonpickle==3.0.1
+jsonpickle==3.0.2
     # via jschema-to-python
 jsonpointer==2.4
     # via jsonpatch
@@ -53,7 +53,7 @@ python-dateutil==2.8.2
     # via botocore
 pyyaml==6.0.1
     # via cfn-lint
-regex==2023.6.3
+regex==2023.8.8
     # via cfn-lint
 s3transfer==0.6.1
     # via boto3
