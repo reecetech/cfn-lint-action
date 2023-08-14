@@ -3,6 +3,9 @@ name: Docker
 
 on:  # yamllint disable-line rule:truthy
   push: ~
+  workflow_dispatch: ~
+  schedule:
+    - cron: '0 0 * * SAT'  # Monday-Friday at 6:30 AM (AEST)
 
 env:
   REGISTRY: ghcr.io
