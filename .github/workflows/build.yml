@@ -113,7 +113,7 @@ jobs:
 
       - id: version
         name: Calculate next version 🔢
-        uses: reecetech/version-increment@2023.9.1
+        uses: reecetech/version-increment@2023.9.3
         with:
           scheme: semver
           increment: minor
