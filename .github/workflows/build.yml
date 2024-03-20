@@ -120,7 +120,7 @@ jobs:
 
       - id: github-release
         name: Create Github Release 📦
-        uses: softprops/action-gh-release@v2.0.2
+        uses: softprops/action-gh-release@v2.0.4
         with:
           tag_name: ${{ steps.version.outputs.v-version }}
           prerelease: false
