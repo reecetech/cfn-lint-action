@@ -1,4 +1,4 @@
-FROM python:3.11-alpine@sha256:cd311c6a0164f34a7edbf364e05258b07d66d3f7bc155139dcb9bef88a186ded
+FROM python:3.12-alpine@sha256:ef097620baf1272e38264207003b0982285da3236a20ed829bf6bbf1e85fe3cb
 
 LABEL org.opencontainers.image.source https://github.com/reecetech/cfn-lint-action
 
