@@ -39,7 +39,7 @@ jobs:
 
       - id: auto-doc
         name: Run auto-doc 📃
-        uses: tj-actions/auto-doc@v3.4.1
+        uses: tj-actions/auto-doc@v3.5.0
         with:
           filename: "action.yaml"
 
