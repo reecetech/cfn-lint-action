@@ -11,3 +11,7 @@ Parameters:
 Resources:
   Empty:
     Type: AWS::CloudFormation::WaitConditionHandle
+
+  AnotherEmpty:
+    Condition: Broken
+    Type: AWS::CloudFormation::WaitConditionHandle
