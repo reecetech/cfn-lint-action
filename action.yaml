@@ -18,4 +18,6 @@ runs:
   using: 'docker'
   image: 'docker://ghcr.io/reecetech/cfn-lint-action'
   args:
+    - "--non-zero-exit-code"
+    - error
     - ${{ inputs.template }}
