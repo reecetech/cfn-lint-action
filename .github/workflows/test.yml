@@ -19,7 +19,7 @@ jobs:
             fail-flag: true
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - id: lint
         name: Lint ${{ matrix.template }}
