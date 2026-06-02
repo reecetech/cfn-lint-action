@@ -127,7 +127,7 @@ jobs:
 
       - id: push-short-tag
         name: Create release short tag 🏷
-        uses: richardsimko/update-tag@v1.1.6
+        uses: richardsimko/update-tag@v2.0.0
         with:
           tag_name: ${{ steps.version.outputs.major-v-version }}
         env:
