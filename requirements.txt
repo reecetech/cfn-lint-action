@@ -4,70 +4,21 @@
 #
 #    pip-compile
 #
-annotated-types==0.7.0
-    # via pydantic
-attrs==24.2.0
-    # via
-    #   jsonschema
-    #   referencing
-aws-sam-translator==1.111.0
-    # via cfn-lint
-boto3==1.35.72
-    # via aws-sam-translator
-botocore==1.35.72
-    # via
-    #   boto3
-    #   s3transfer
-cfn-lint==1.53.0
+cfn-lint==1.56.0
     # via -r requirements.in
-jmespath==1.0.1
-    # via
-    #   boto3
-    #   botocore
 jsonpatch==1.33
     # via cfn-lint
 jsonpointer==3.0.0
     # via jsonpatch
-jsonschema==4.23.0
-    # via aws-sam-translator
-jsonschema-specifications==2024.10.1
-    # via jsonschema
 mpmath==1.3.0
     # via sympy
 networkx==3.4.2
     # via cfn-lint
-pydantic==2.13.4
-    # via aws-sam-translator
-pydantic-core==2.46.4
-    # via pydantic
-python-dateutil==2.9.0.post0
-    # via botocore
 pyyaml==6.0.3
     # via cfn-lint
-referencing==0.35.1
-    # via
-    #   jsonschema
-    #   jsonschema-specifications
 regex==2024.11.6
     # via cfn-lint
-rpds-py==0.22.0
-    # via
-    #   jsonschema
-    #   referencing
-s3transfer==0.10.4
-    # via boto3
-six==1.16.0
-    # via python-dateutil
 sympy==1.14.0
     # via cfn-lint
 typing-extensions==4.15.0
-    # via
-    #   aws-sam-translator
-    #   cfn-lint
-    #   pydantic
-    #   pydantic-core
-    #   typing-inspection
-typing-inspection==0.4.2
-    # via pydantic
-urllib3==2.2.3
-    # via botocore
+    # via cfn-lint
