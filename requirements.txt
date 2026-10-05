@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-cfn-lint==1.56.3
+cfn-lint==1.57.1
     # via -r requirements.in
 jsonpatch==1.33
     # via cfn-lint
